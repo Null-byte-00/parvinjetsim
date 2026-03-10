@@ -11,6 +11,38 @@ static float clampf(float x, float min_val, float max_val) {
     return x;
 }
 
+
+/* Vector Math */
+
+Vector3 vector_3_normalize(Vector3 v) {
+    float magnitude = sqrt(v.x*v.x + v.y*v.y + v.z*v.z );
+
+    //return (Vector3) {-1*v.x, -1*v.y, -1*v.z};
+    return (Vector3) {v.x / magnitude, v.y / magnitude, -v.z / magnitude};
+}
+
+Vector3 vector_3_negate(Vector3 v) {
+    return (Vector3) {-1*v.x, -1*v.y, -1*v.z};
+}
+
+Vector3 vector_3_crossproduct(Vector3 v1, Vector3 v2) {
+    /*
+    a2xb3 - a3xb2
+    a3xb1 - a1xb3
+    a1xb2 - a2xb1
+    */
+    return (Vector3) {
+        v1.y*v2.z - v1.z*v2.y,
+        v1.z*v2.x - v1.x-v2.z,
+        v1.x*v2.y - v1.y*v2.x
+    };
+} 
+
+float vector_3_length(Vector3 v) {
+    return sqrt(v.x*v.x + v.y*v.y + v.z*v.z );
+}
+
+
 static float vector3_length_squared(Vector3 v) {
     return v.x * v.x + v.y * v.y + v.z * v.z;
 }
@@ -34,6 +66,8 @@ static float deg_to_rad(float deg) {
     return deg * (3.14159265358979323846f / 180.0f);
 }
 
+/* fobj functions */
+
 void fobj_init(FlyingObject *fobj) {
     if (!fobj) return;
 
@@ -49,6 +83,7 @@ void fobj_init(FlyingObject *fobj) {
 
     //fobj_set_default_aero_tables(fobj);
 }
+
 
 void fobj_set_test_aero_tables(FlyingObject *fobj) {
     if (!fobj) return;
@@ -100,35 +135,6 @@ Vector3 fobj_compute_gravity_force(const FlyingObject *fobj) {
 
     return (Vector3){ 0.0f, -fobj->mass * GRAVITY, 0.0f };
 }
-
-Vector3 vector_3_normalize(Vector3 v) {
-    float magnitude = sqrt(v.x*v.x + v.y*v.y + v.z*v.z );
-
-    //return (Vector3) {-1*v.x, -1*v.y, -1*v.z};
-    return (Vector3) {v.x / magnitude, v.y / magnitude, -v.z / magnitude};
-}
-
-Vector3 vector_3_negate(Vector3 v) {
-    return (Vector3) {-1*v.x, -1*v.y, -1*v.z};
-}
-
-Vector3 vector_3_crossproduct(Vector3 v1, Vector3 v2) {
-    /*
-    a2xb3 - a3xb2
-    a3xb1 - a1xb3
-    a1xb2 - a2xb1
-    */
-    return (Vector3) {
-        v1.y*v2.z - v1.z*v2.y,
-        v1.z*v2.x - v1.x-v2.z,
-        v1.x*v2.y - v1.y*v2.x
-    };
-} 
-
-float vector_3_length(Vector3 v) {
-    return sqrt(v.x*v.x + v.y*v.y + v.z*v.z );
-}
-
 
 
 Vector3 fobj_compute_thrust_force(const FlyingObject *fobj, Vector3 forward_dir) {
