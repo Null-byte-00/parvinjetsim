@@ -6,6 +6,7 @@
 typedef struct FlyingObject {
     Vector3 pos; // meters
     Vector3 velocity; // m/s
+    Vector3 external_force; // N
     float mass; // kg
     float thrust; // N
     float altitude; // meters

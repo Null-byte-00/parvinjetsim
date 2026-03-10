@@ -77,6 +77,7 @@ void fobj_init(FlyingObject *fobj) {
     fobj->mass = 1.0f;
     fobj->thrust = 0.0f;
     fobj->reference_area = 0.01f;
+    fobj->external_force = (Vector3) {0.0f, 0.0f, 0.0f};
 
     fobj->altitude = 0.0f;
     fobj->aoa = 0.0f;
@@ -232,6 +233,7 @@ void fobj_update(FlyingObject *fobj, float dt, Vector3 forward_dir) {
     net_force = vector3_add_safe(net_force, thrust_force);
     net_force = vector3_add_safe(net_force, drag_force);
     net_force = vector3_add_safe(net_force, lift_force);
+    net_force = vector3_add_safe(net_force, fobj->external_force);
 
     Vector3 acceleration = vector3_scale_safe(net_force, 1.0f / fobj->mass);
 
