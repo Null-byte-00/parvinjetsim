@@ -26,11 +26,11 @@ Vector3 vector_3_normalize(Vector3 v);
 Vector3 vector_3_negate(Vector3 v);
 Vector3 vector_3_crossproduct(Vector3 v1, Vector3 v2);
 float vector_3_length(Vector3 v);
-static float vector3_length_squared(Vector3 v);
-static Vector3 vector3_scale_safe(Vector3 v, float s);
-static Vector3 vector3_add_safe(Vector3 a, Vector3 b);
-static Vector3 vector3_sub_safe(Vector3 a, Vector3 b);
-static float deg_to_rad(float deg);
+float vector3_length_squared(Vector3 v);
+Vector3 vector3_scale_safe(Vector3 v, float s);
+Vector3 vector3_add_safe(Vector3 a, Vector3 b);
+Vector3 vector3_sub_safe(Vector3 a, Vector3 b);
+float deg_to_rad(float deg);
 
 
 #endif

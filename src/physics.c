@@ -5,7 +5,7 @@
 #define SEA_LEVEL_AIR_DENSITY 1.225f
 
 
-static float clampf(float x, float min_val, float max_val) {
+float clampf(float x, float min_val, float max_val) {
     if (x < min_val) return min_val;
     if (x > max_val) return max_val;
     return x;
@@ -43,26 +43,26 @@ float vector_3_length(Vector3 v) {
 }
 
 
-static float vector3_length_squared(Vector3 v) {
+float vector3_length_squared(Vector3 v) {
     return v.x * v.x + v.y * v.y + v.z * v.z;
 }
 
-static Vector3 vector3_scale_safe(Vector3 v, float s) {
+Vector3 vector3_scale_safe(Vector3 v, float s) {
     Vector3 out = { v.x * s, v.y * s, v.z * s };
     return out;
 }
 
-static Vector3 vector3_add_safe(Vector3 a, Vector3 b) {
+Vector3 vector3_add_safe(Vector3 a, Vector3 b) {
     Vector3 out = { a.x + b.x, a.y + b.y, a.z + b.z };
     return out;
 }
 
-static Vector3 vector3_sub_safe(Vector3 a, Vector3 b) {
+Vector3 vector3_sub_safe(Vector3 a, Vector3 b) {
     Vector3 out = { a.x - b.x, a.y - b.y, a.z - b.z };
     return out;
 }
 
-static float deg_to_rad(float deg) {
+float deg_to_rad(float deg) {
     return deg * (3.14159265358979323846f / 180.0f);
 }
 

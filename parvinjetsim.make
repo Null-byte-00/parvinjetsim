@@ -121,6 +121,12 @@ OBJECTS :=
 GENERATED += $(OBJDIR)/main.o
 OBJECTS += $(OBJDIR)/main.o
 
+GENERATED += $(OBJDIR)/physics.o
+OBJECTS += $(OBJDIR)/physics.o
+
+GENERATED += $(OBJDIR)/test_simulations.o
+OBJECTS += $(OBJDIR)/test_simulations.o
+
 # Rules
 # #############################################
 
@@ -184,6 +190,14 @@ endif
 # #############################################
 
 $(OBJDIR)/main.o: src/main.c
+	@echo "$(notdir $<)"
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+
+$(OBJDIR)/physics.o: src/physics.c
+	@echo "$(notdir $<)"
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+
+$(OBJDIR)/test_simulations.o: src/test_simulations.c
 	@echo "$(notdir $<)"
 	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
